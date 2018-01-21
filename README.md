@@ -10,7 +10,7 @@ Example:
 
 @sot.snd @k[1], 10 # contribution by test account 1 - rejected 
 
-@sot.exp :balance_of, @a[1], 161500 * @E6, 150000 * @E6 # change in token balance for account 1
+@sot.exp :balance_of, @a[1], 161500 * @E6, 150000 * @E6 # expected token balance and change for account 1
 
 @sot.do # perform 
 ```
