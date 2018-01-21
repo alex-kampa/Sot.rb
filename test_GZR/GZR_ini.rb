@@ -30,7 +30,7 @@ require_relative "../lib/Sot.rb"
 
 @acts = JSON.parse(File.read("acc/#{@token}.full.json"))
 
-# variables and mappings
+# variables and mappings to track during testing
 
 @vars = %w[
 at_now
