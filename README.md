@@ -1,4 +1,42 @@
-Sot.rb is a Ruby script to test Solidity smart contracts.
+Sot.rb is a Ruby script to simplify testing Solidity smart contracts.
+
+Example:
+
+```ruby
+@sot.txt 'Some minting (ok) and an early contribution (throws)' #
+
+@sot.own :mint_reserve, @a[1], 100000 * @E6 # minting by owner 
+@sot.own :mint_team,    @a[1],  50000 * @E6 # more minting by owner
+
+@sot.snd @k[1], 10 # contribution by test account 1 - rejected 
+
+@sot.exp :balance_of, @a[1], 161500 * @E6, 150000 * @E6 # expected change for acocunt 1 (@E6 = 1_000_000)
+
+@sot.do # perform 
+```
+
+Result in the log file: 
+
+```
+== Some minting (ok) and an early contribution (throws)
+== 
+
+ACTIONS
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005bca1d8>, 0x64896218f5f7BFa39b2B997554F7C600D8143E4F, 10)
+
+VERIFY
+ok  val [balance_of acc1] 1 is 161500000000 as expected
+ok  diff [balance_of acc1] is 150000000000 as expected
+
+DIFFERENCES
+[:c, :tokens_issued_total, 126500.0, 276500.0, 150000.0]
+[:c, :tokens_issued_team, 0.0, 50000.0, 50000.0]
+[:c, :tokens_issued_reserve, 0.0, 100000.0, 100000.0]
+[1, :get_balance, 999999.818814094, 999999.730814094, -0.088]
+[1, :balance_of, 11500.0, 161500.0, 150000.0]
+[1, :balances_locked, 0.0, 50000.0, 50000.0]
+[1, :locked_balance, 0.0, 50000.0, 50000.0]
+```
 
 ## Requirements
 
@@ -41,7 +79,7 @@ In the file GZR_ini.rb, the @sot object is initialised:
 
 The variable names provided in @vars tell @sot to track changes to these variables at various testing stages. Similarly, @maps are the mappings whose changes will be tracked for all test accounts.
 
-@types is used to specify the type of a variable when this is not obvous from the variable name, the possble values being :address :date :ether and :token. This is used for output formatting. When the variable name contains the keywords 'address' 'date' 'ether' or 'token', it does not need to be declared in @types.
+@types is used to specify the type of a variable when this is not obvous from the variable name, the possble values being :address :bool :date :ether and :token. This is used for output formatting. When the variable name contains the keywords 'address' 'date' 'ether' or 'token', it does not need to be declared in @types.
 
 ```
 @types = {
