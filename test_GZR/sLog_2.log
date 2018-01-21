@@ -1,0 +1,289 @@
+2018-01-21 18:30:48 UTC
+
+========================================
+== Contract Gizer Gaming Token initialized
+== 
+At address 0x64896218f5f7BFa39b2B997554F7C600D8143E4F
+
+===============================================================================
+============ Preliminary actions
+===============================================================================
+
+========================================
+== Set wallets
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [wallet acc]  is f895b6041f3953b529910ba5ec50ec9a3320dc5a as expected
+ok  val [redemption_wallet acc]  is 95f928d6dbf46b9aca73782485fe912e1a9a3bc6 as expected
+ok  val [whitelist_wallet acc]  is ec37f4a42e1d411266a959e29222d8221384bf38 as expected
+
+DIFFERENCES
+[:c, :wallet, "921c35f74e039a2dae94c0df4754da7d33919953", "f895b6041f3953b529910ba5ec50ec9a3320dc5a"]
+[:c, :redemption_wallet, "921c35f74e039a2dae94c0df4754da7d33919953", "95f928d6dbf46b9aca73782485fe912e1a9a3bc6"]
+[:c, :whitelist_wallet, "921c35f74e039a2dae94c0df4754da7d33919953", "ec37f4a42e1d411266a959e29222d8221384bf38"]
+
+========================================
+== Add account 2 to whitelist
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [whitelist acc2] 2 is true as expected
+
+DIFFERENCES
+[2, :whitelist, false, true]
+
+===============================================================================
+============ Before presale
+===============================================================================
+
+========================================
+== Private sale contributions
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [balance_of acc1] 1 is 11500000000 as expected
+ok  diff [balance_of acc1] is 11500000000 as expected
+ok  val [balance_of acc2] 2 is 115000000000 as expected
+ok  diff [balance_of acc2] is 115000000000 as expected
+ok  val [balance_of acc3] 3 is 0 as expected
+ok  diff [balance_of acc3] is 0 as expected
+
+DIFFERENCES
+[:c, :ether_received_private, 0.0, 110.0, 110.0]
+[:c, :tokens_issued_total, 0.0, 126500.0, 126500.0]
+[:c, :tokens_issued_crowd, 0.0, 126500.0, 126500.0]
+[:c, :tokens_issued_private, 0.0, 126500.0, 126500.0]
+[1, :balance_of, 0.0, 11500.0, 11500.0]
+[1, :balances_private, 0.0, 11500.0, 11500.0]
+[1, :balance_eth_private, 0.0, 10.0, 10.0]
+[2, :balance_of, 0.0, 115000.0, 115000.0]
+[2, :balances_private, 0.0, 115000.0, 115000.0]
+[2, :balance_eth_private, 0.0, 100.0, 100.0]
+
+========================================
+== Some minting (ok) and an early contribution (throws)
+== 
+
+ACTIONS
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005bca1d8>, 0x64896218f5f7BFa39b2B997554F7C600D8143E4F, 10)
+
+VERIFY
+ok  val [balance_of acc1] 1 is 161500000000 as expected
+ok  diff [balance_of acc1] is 150000000000 as expected
+
+DIFFERENCES
+[:c, :tokens_issued_total, 126500.0, 276500.0, 150000.0]
+[:c, :tokens_issued_team, 0.0, 50000.0, 50000.0]
+[:c, :tokens_issued_reserve, 0.0, 100000.0, 100000.0]
+[1, :get_balance, 999999.818814094, 999999.730814094, -0.088]
+[1, :balance_of, 11500.0, 161500.0, 150000.0]
+[1, :balances_locked, 0.0, 50000.0, 50000.0]
+[1, :locked_balance, 0.0, 50000.0, 50000.0]
+
+===============================================================================
+============ Presale
+===============================================================================
+
+========================================
+== presale
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1511272801 as expected
+
+DIFFERENCES
+[:c, :at_now, 1, 1511272801, 1511272800]
+
+========================================
+== Some presale contributions
+== 
+
+ACTIONS
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005bca1d8>, 0x64896218f5f7BFa39b2B997554F7C600D8143E4F, 1)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005bc9468>, 0x64896218f5f7BFa39b2B997554F7C600D8143E4F, 10)
+
+VERIFY
+ok  diff [balance_of acc1] is 1150000000 as expected
+ok  diff [balance_of acc2] is 11500000000 as expected
+ok  val [presale_contributor_count acc]  is 2 as expected
+ok  diff [presale_contributor_count acc] is 2 as expected
+ok  val [locked_balance acc1] 1 is 51150000000 as expected
+ok  val [locked_balance acc2] 2 is 0 as expected
+
+DIFFERENCES
+[:c, :eth, 0.0, 11.0, 11.0]
+[:c, :ether_received_crowd, 0.0, 11.0, 11.0]
+[:c, :tokens_issued_total, 276500.0, 289150.0, 12650.0]
+[:c, :tokens_issued_crowd, 126500.0, 139150.0, 12650.0]
+[:c, :presale_contributor_count, 0, 2, 2]
+[1, :get_balance, 999999.730814094, 999998.7280391679, -1.002774926]
+[1, :balance_of, 161500.0, 162650.0, 1150.0]
+[1, :balances_crowd, 0.0, 1150.0, 1150.0]
+[1, :balance_eth_crowd, 0.0, 1.0, 1.0]
+[1, :locked_balance, 50000.0, 51150.0, 1150.0]
+[2, :get_balance, 999989.909544954, 999979.907430028, -10.002114926]
+[2, :balance_of, 115000.0, 126500.0, 11500.0]
+[2, :balances_crowd, 0.0, 11500.0, 11500.0]
+[2, :balance_eth_crowd, 0.0, 10.0, 10.0]
+
+===============================================================================
+============ After presale
+===============================================================================
+
+========================================
+== after presale
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1511704801 as expected
+
+DIFFERENCES
+[:c, :at_now, 1511272801, 1511704801, 432000]
+
+===============================================================================
+============ ICO
+===============================================================================
+
+========================================
+== ico
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1512136801 as expected
+
+DIFFERENCES
+[:c, :at_now, 1511704801, 1512136801, 432000]
+
+========================================
+== Reclaim funds - fails
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [balance_of acc1] is 0 as expected
+
+DIFFERENCES
+[1, :get_balance, 999998.7280391679, 999998.6400391681, -0.088]
+
+===============================================================================
+============ After ICO
+===============================================================================
+
+========================================
+== after ico
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1514383201 as expected
+
+DIFFERENCES
+[:c, :at_now, 1512136801, 1514383201, 2246400]
+
+========================================
+== Declaring ICO finished fails
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [ico_finished acc]  is false as expected
+ok  val [tradeable acc]  is false as expected
+
+DIFFERENCES
+(no differences found)
+
+========================================
+== Reclaim funds - ok
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [balance_of acc1] is -1150000000 as expected
+ok  diff [get_balance acc1] is ≈1000000000000000000 as expected (within 0.1 ether)
+
+DIFFERENCES
+[:c, :eth, 11.0, 10.0, -1.0]
+[:c, :tokens_issued_total, 289150.0, 288000.0, -1150.0]
+[1, :get_balance, 999998.6400391681, 999999.6394337941, 0.999394626]
+[1, :balance_of, 162650.0, 161500.0, -1150.0]
+[1, :balances_crowd, 1150.0, 0.0, -1150.0]
+[1, :balance_eth_crowd, 1.0, 0.0, -1.0]
+[1, :locked_balance, 51150.0, 50000.0, -1150.0]
+
+========================================
+== owner clawback - not yet
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [get_balance acc]  is 10000000000000000000 as expected
+ok  diff [get_balance acc] is 0 as expected
+
+DIFFERENCES
+(no differences found)
+
+===============================================================================
+============ After lockup end date
+===============================================================================
+
+========================================
+== after lockup end
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1529935201 as expected
+
+DIFFERENCES
+[:c, :at_now, 1514383201, 1529935201, 15552000]
+[1, :locked_balance, 50000.0, 0.0, -50000.0]
+
+========================================
+== owner clawback - ok
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [get_balance acc]  is 0 as expected
+ok  diff [get_balance acc] is 10000000000000000000 as expected
+
+DIFFERENCES
+[:c, :eth, 10.0, 0.0, -10.0]
+
+========================================
+== Transfers - no
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [balance_of acc1] is 0 as expected
+ok  diff [balance_of acc2] is 0 as expected
+
+DIFFERENCES
+[1, :get_balance, 999999.6394337941, 999999.551433794, -0.088]
+[2, :get_balance, 999979.907430028, 999979.819430028, -0.088]
+
+Errors found: 0
+
+2018-01-21 18:31:43 UTC

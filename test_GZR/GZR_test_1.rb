@@ -64,13 +64,13 @@ end
 epoch = @sot.var :date_presale_start
 jump_to(epoch, 'presale')
 
-# uint public constant DATE_PRESALE_START = 1510318800; // 10-Nov-2017 13:00 UTC
-# uint public constant DATE_PRESALE_END   = 1510923600; // 17-Nov-2017 13:00 UTC
-# uint public dateIcoStart = 1511528400; // 24-Nov-2017 13:00 UTC
-# uint public dateIcoEnd   = 1513947600; // 22-Dec-2017 13:00 UTC
+# uint public constant DATE_PRESALE_START = 1511272800; // 21-Nov-2017 14:00 UTC
+# uint public constant DATE_PRESALE_END   = 1511704800; // 26-Nov-2017 14:00 UTC
+# uint public dateIcoStart = 1512136800; // 01-Dec-2017 14:00 UTC
+# uint public dateIcoEnd   = 1514383200; // 27-Dec-2017 14:00 UTC
 
-# 1511528400 + 86400 = 1511614800
-# 1513947600 + 86400 = 1514034000
+# 1512136800 + 86400 = 1512223200
+# 1514383200 + 86400 = 1514469600
 
 ###
 
@@ -101,7 +101,7 @@ jump_to(epoch, 'presale')
 
 @sot.txt 'Modify ICO dates - ok (called by owner)'
 
-@sot.own :update_ico_dates, 1511614800, 1514034000
+@sot.own :update_ico_dates, 1512223200, 1514469600
 @sot.exp :date_ico_start, nil, 86400
 @sot.exp :date_ico_end, nil, 86400
 @sot.do

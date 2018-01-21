@@ -1,22 +1,21 @@
 require "Ethereum.rb"
 require "eth"
-require_relative "../ruby/utils.rb"
-require_relative "../ruby/Sot4.rb"
+require_relative "../lib/Sot.rb"
 
 ##
 
-@contract_address = "0x3AA2a4d0F6dB1EE7f0Be0B238C43Ae7e07E09624"
+@contract_address = "0x0837639bebA93cEC81CCffa2dE17755894E5B332"
 
 ##
 
 @token = 'GZR'
 @name = 'GizerToken'
 
-@wallet_account     = '0x000c14a7cAD4d8d41cd1c375083557e05c79f476'
-@redemption_account = '0x0028C11baffA46f332Ded3e7EaCe745F41b53852'
-@whitelist_account  = '0xDF8f647384Ed63AA931B3C509cC07c658bD45d00'
+@wallet_account     = '0xF895b6041f3953B529910bA5EC50eC9a3320DC5a'
+@redemption_account = '0x95f928D6DbF46B9aCa73782485fe912e1a9A3bC6'
+@whitelist_account  = '0xec37F4A42e1d411266A959E29222d8221384bf38'
 
-@whitelist_key = Eth::Key.new priv: '27006809b24c2d2bc27e2b3fb929830843ac5ead81b3d8d15d83d60934b46025'
+@whitelist_key = Eth::Key.new priv: '2afb87d5173d748d1db502a6c24774903e6a3c701d4dae3b211e2e915159dea3'
 
 # ini variables
 
@@ -86,8 +85,7 @@ locked_balance
 
 @client = Ethereum::HttpClient.new('http://127.0.0.1:8545')
 @contract_abi = File.read('abi/abi.txt')
-#@contract = Ethereum::Contract.create(client: @client, name: @name, address: @contract_address, abi: @contract_abi)
-@owner_key = Eth::Key.new priv: 'b0f1974b7ac16b84be3e1489775ccd76779c9a063121dc5cf6c742cc51fbbf93'
+@owner_key = Eth::Key.new priv: 'ab11dde3778d0a06fb322e0c8d63185c7fcaa3f76b0489d01a4f75829c7e919a'
 
 @sot = Sot.new(
   {

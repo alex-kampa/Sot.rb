@@ -1,9 +1,9 @@
-2017-11-27 09:37:23 UTC
+2018-01-21 17:40:08 UTC
 
 ========================================
 == Contract Gizer Gaming Token initialized
 == 
-At address 0x3AA2a4d0F6dB1EE7f0Be0B238C43Ae7e07E09624
+At address 0x929981C1AAD4D31bd215A796bE4932578C3332e1
 
 ===============================================================================
 ============ Verify wallet functions
@@ -16,14 +16,14 @@ At address 0x3AA2a4d0F6dB1EE7f0Be0B238C43Ae7e07E09624
 ACTIONS
 
 VERIFY
-ok  val [wallet acc]  is 000c14a7cad4d8d41cd1c375083557e05c79f476 as expected
-ok  val [redemption_wallet acc]  is 0028c11baffa46f332ded3e7eace745f41b53852 as expected
-ok  val [whitelist_wallet acc]  is df8f647384ed63aa931b3c509cc07c658bd45d00 as expected
+ok  val [wallet acc]  is f895b6041f3953b529910ba5ec50ec9a3320dc5a as expected
+ok  val [redemption_wallet acc]  is 95f928d6dbf46b9aca73782485fe912e1a9a3bc6 as expected
+ok  val [whitelist_wallet acc]  is ec37f4a42e1d411266a959e29222d8221384bf38 as expected
 
 DIFFERENCES
-[:c, :wallet, "7df97252dba710b75a5364bf4bcddf12c9e4559d", "000c14a7cad4d8d41cd1c375083557e05c79f476"]
-[:c, :redemption_wallet, "7df97252dba710b75a5364bf4bcddf12c9e4559d", "0028c11baffa46f332ded3e7eace745f41b53852"]
-[:c, :whitelist_wallet, "7df97252dba710b75a5364bf4bcddf12c9e4559d", "df8f647384ed63aa931b3c509cc07c658bd45d00"]
+[:c, :wallet, "921c35f74e039a2dae94c0df4754da7d33919953", "f895b6041f3953b529910ba5ec50ec9a3320dc5a"]
+[:c, :redemption_wallet, "921c35f74e039a2dae94c0df4754da7d33919953", "95f928d6dbf46b9aca73782485fe912e1a9a3bc6"]
+[:c, :whitelist_wallet, "921c35f74e039a2dae94c0df4754da7d33919953", "ec37f4a42e1d411266a959e29222d8221384bf38"]
 
 ===============================================================================
 ============ Verify whitelist functions
@@ -87,7 +87,7 @@ VERIFY
 ok  val [whitelist acc11] 11 is false as expected
 
 DIFFERENCES
-[4, :get_balance, 1997599.608832212, 1997599.5208322122, -0.088]
+[4, :get_balance, 999999.912, 999999.824, -0.088]
 
 ===============================================================================
 ============ Verify ICO date change function
@@ -151,13 +151,13 @@ DIFFERENCES
 ACTIONS
 
 VERIFY
-***ERR*** diff [date_ico_start acc] is -522000 expected 86400
-***ERR*** diff [date_ico_end acc] is -349200 expected 86400
+ok  diff [date_ico_start acc] is 86400 as expected
+ok  diff [date_ico_end acc] is 86400 as expected
 
 DIFFERENCES
-[:c, :date_ico_start, 1512136800, 1511614800, -522000]
-[:c, :date_ico_end, 1514383200, 1514034000, -349200]
-[:c, :lockup_end_date, 1529935200, 1529586000, -349200]
+[:c, :date_ico_start, 1512136800, 1512223200, 86400]
+[:c, :date_ico_end, 1514383200, 1514469600, 86400]
+[:c, :lockup_end_date, 1529935200, 1530021600, 86400]
 
 ========================================
 == ico
@@ -166,10 +166,10 @@ DIFFERENCES
 ACTIONS
 
 VERIFY
-ok  val [at_now acc]  is 1511614801 as expected
+ok  val [at_now acc]  is 1512223201 as expected
 
 DIFFERENCES
-[:c, :at_now, 1511272801, 1511614801, 342000]
+[:c, :at_now, 1511272801, 1512223201, 950400]
 
 ========================================
 == Modify ICO dates - fail (ico already started)
@@ -184,6 +184,6 @@ ok  diff [date_ico_end acc] is 0 as expected
 DIFFERENCES
 (no differences found)
 
-Errors found: 2
+Errors found: 0
 
-2017-11-27 09:37:59 UTC
+2018-01-21 17:40:48 UTC
