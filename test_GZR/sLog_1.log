@@ -1,0 +1,189 @@
+2017-11-27 09:37:23 UTC
+
+========================================
+== Contract Gizer Gaming Token initialized
+== 
+At address 0x3AA2a4d0F6dB1EE7f0Be0B238C43Ae7e07E09624
+
+===============================================================================
+============ Verify wallet functions
+===============================================================================
+
+========================================
+== Set wallets
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [wallet acc]  is 000c14a7cad4d8d41cd1c375083557e05c79f476 as expected
+ok  val [redemption_wallet acc]  is 0028c11baffa46f332ded3e7eace745f41b53852 as expected
+ok  val [whitelist_wallet acc]  is df8f647384ed63aa931b3c509cc07c658bd45d00 as expected
+
+DIFFERENCES
+[:c, :wallet, "7df97252dba710b75a5364bf4bcddf12c9e4559d", "000c14a7cad4d8d41cd1c375083557e05c79f476"]
+[:c, :redemption_wallet, "7df97252dba710b75a5364bf4bcddf12c9e4559d", "0028c11baffa46f332ded3e7eace745f41b53852"]
+[:c, :whitelist_wallet, "7df97252dba710b75a5364bf4bcddf12c9e4559d", "df8f647384ed63aa931b3c509cc07c658bd45d00"]
+
+===============================================================================
+============ Verify whitelist functions
+===============================================================================
+
+========================================
+== Add to whitelist
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [whitelist acc1] 1 is true as expected
+
+DIFFERENCES
+[1, :whitelist, false, true]
+
+========================================
+== Add to whitelist multiple
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [whitelist acc2] 2 is true as expected
+ok  val [whitelist acc3] 3 is true as expected
+ok  val [whitelist acc4] 4 is true as expected
+ok  val [whitelist acc5] 5 is true as expected
+ok  val [whitelist acc6] 6 is true as expected
+ok  val [whitelist acc7] 7 is true as expected
+ok  val [whitelist acc8] 8 is true as expected
+
+DIFFERENCES
+[2, :whitelist, false, true]
+[3, :whitelist, false, true]
+[4, :whitelist, false, true]
+[5, :whitelist, false, true]
+[6, :whitelist, false, true]
+[7, :whitelist, false, true]
+[8, :whitelist, false, true]
+
+========================================
+== Add to whitelist as owner (ok)
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [whitelist acc10] 10 is true as expected
+
+DIFFERENCES
+[10, :whitelist, false, true]
+
+========================================
+== Add to whitelist with other key (fail)
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [whitelist acc11] 11 is false as expected
+
+DIFFERENCES
+[4, :get_balance, 1997599.608832212, 1997599.5208322122, -0.088]
+
+===============================================================================
+============ Verify ICO date change function
+===============================================================================
+
+========================================
+== presale
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1511272801 as expected
+
+DIFFERENCES
+[:c, :at_now, 1, 1511272801, 1511272800]
+
+========================================
+== Modify ICO dates - fail (not owner)
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [date_ico_start acc] is 0 as expected
+ok  diff [date_ico_end acc] is 0 as expected
+
+DIFFERENCES
+(no differences found)
+
+========================================
+== Modify ICO dates - fail (end before start)
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [date_ico_start acc] is 0 as expected
+ok  diff [date_ico_end acc] is 0 as expected
+
+DIFFERENCES
+(no differences found)
+
+========================================
+== Modify ICO dates - fail (start is before now)
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [date_ico_start acc] is 0 as expected
+ok  diff [date_ico_end acc] is 0 as expected
+
+DIFFERENCES
+(no differences found)
+
+========================================
+== Modify ICO dates - ok (called by owner)
+== 
+
+ACTIONS
+
+VERIFY
+***ERR*** diff [date_ico_start acc] is -522000 expected 86400
+***ERR*** diff [date_ico_end acc] is -349200 expected 86400
+
+DIFFERENCES
+[:c, :date_ico_start, 1512136800, 1511614800, -522000]
+[:c, :date_ico_end, 1514383200, 1514034000, -349200]
+[:c, :lockup_end_date, 1529935200, 1529586000, -349200]
+
+========================================
+== ico
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1511614801 as expected
+
+DIFFERENCES
+[:c, :at_now, 1511272801, 1511614801, 342000]
+
+========================================
+== Modify ICO dates - fail (ico already started)
+== 
+
+ACTIONS
+
+VERIFY
+ok  diff [date_ico_start acc] is 0 as expected
+ok  diff [date_ico_end acc] is 0 as expected
+
+DIFFERENCES
+(no differences found)
+
+Errors found: 2
+
+2017-11-27 09:37:59 UTC
