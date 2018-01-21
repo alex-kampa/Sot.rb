@@ -2,7 +2,7 @@ require "Ethereum.rb"
 require "eth"
 require 'duplicate'
 
-require_relative "../ruby/utils.rb"
+require_relative "./utils.rb"
 
 class Sot
 
