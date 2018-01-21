@@ -3,19 +3,19 @@ Sot.rb is a Ruby script to simplify testing Solidity smart contracts.
 Example:
 
 ```ruby
-@sot.txt 'Some minting (ok) and an early contribution (throws)' #
+@sot.txt 'Some minting (ok) and an early contribution (throws)'
 
-@sot.own :mint_reserve, @a[1], 100000 * @E6 # minting by owner 
+@sot.own :mint_reserve, @a[1], 100000 * @E6 # minting by owner (@E6 = 1_000_000)
 @sot.own :mint_team,    @a[1],  50000 * @E6 # more minting by owner
 
 @sot.snd @k[1], 10 # contribution by test account 1 - rejected 
 
-@sot.exp :balance_of, @a[1], 161500 * @E6, 150000 * @E6 # expected change for acocunt 1 (@E6 = 1_000_000)
+@sot.exp :balance_of, @a[1], 161500 * @E6, 150000 * @E6 # change in token balance for account 1
 
 @sot.do # perform 
 ```
 
-Result in the log file: 
+Result in the log file (note that in addition to requested verifications, all changes to tracked variables are reported): 
 
 ```
 == Some minting (ok) and an early contribution (throws)
