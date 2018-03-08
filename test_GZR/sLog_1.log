@@ -1,9 +1,9 @@
-2018-01-21 17:40:08 UTC
+2018-01-24 09:06:18 UTC
 
 ========================================
 == Contract Gizer Gaming Token initialized
 == 
-At address 0x929981C1AAD4D31bd215A796bE4932578C3332e1
+At address 0x0649Af57660e3196294949EB4fEDBE9b1e51F50E
 
 ===============================================================================
 ============ Verify wallet functions
@@ -87,7 +87,7 @@ VERIFY
 ok  val [whitelist acc11] 11 is false as expected
 
 DIFFERENCES
-[4, :get_balance, 999999.912, 999999.824, -0.088]
+[4, :get_balance, 999699.819100204, 999699.7311002039, -0.088]
 
 ===============================================================================
 ============ Verify ICO date change function
@@ -186,4 +186,4 @@ DIFFERENCES
 
 Errors found: 0
 
-2018-01-21 17:40:48 UTC
+2018-01-24 09:06:56 UTC

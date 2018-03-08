@@ -1,9 +1,9 @@
-2018-01-21 18:33:27 UTC
+2018-01-25 18:03:26 UTC
 
 ========================================
 == Contract Gizer Gaming Token initialized
 == 
-At address 0x27882e8983b5842A79df3f03C213d77D08578746
+At address 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B
 
 ===============================================================================
 ============ Preliminary actions
@@ -88,7 +88,7 @@ DIFFERENCES
 == 
 
 ACTIONS
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ae65f0>, 0x27882e8983b5842A79df3f03C213d77D08578746, 10)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b8910>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 10)
 
 VERIFY
 ok  val [balance_of acc1] 1 is 161500000000 as expected
@@ -99,7 +99,7 @@ DIFFERENCES
 [:c, :tokens_issued_total, 126500.0, 291500.0, 165000.0]
 [:c, :tokens_issued_team, 0.0, 55000.0, 55000.0]
 [:c, :tokens_issued_reserve, 0.0, 110000.0, 110000.0]
-[1, :get_balance, 999999.551433794, 999999.463433794, -0.088]
+[1, :get_balance, 999946.562710366, 999946.474710366, -0.088]
 [1, :balance_of, 11500.0, 161500.0, 150000.0]
 [1, :balances_locked, 0.0, 50000.0, 50000.0]
 [1, :locked_balance, 0.0, 50000.0, 50000.0]
@@ -128,11 +128,11 @@ DIFFERENCES
 == 
 
 ACTIONS
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ae65f0>, 0x27882e8983b5842A79df3f03C213d77D08578746, 25)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ae5650>, 0x27882e8983b5842A79df3f03C213d77D08578746, 50)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ae4480>, 0x27882e8983b5842A79df3f03C213d77D08578746, 75)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ade210>, 0x27882e8983b5842A79df3f03C213d77D08578746, 150)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005adc9b0>, 0x27882e8983b5842A79df3f03C213d77D08578746, 0.005)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b8910>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 25)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b81b8>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 50)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b39b0>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 75)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b30f0>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 150)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b27b8>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 0.005)
 
 VERIFY
 ok  diff [balance_of acc1] is 28750000000 as expected
@@ -152,32 +152,32 @@ DIFFERENCES
 [:c, :tokens_issued_total, 291500.0, 625250.0, 333750.0]
 [:c, :tokens_issued_crowd, 126500.0, 460250.0, 333750.0]
 [:c, :presale_contributor_count, 0, 4, 4]
-[1, :get_balance, 999999.463433794, 999974.4606588681, -25.002774926]
+[1, :get_balance, 999946.474710366, 999921.47193544, -25.002774926]
 [1, :balance_of, 161500.0, 190250.0, 28750.0]
 [1, :balances_crowd, 0.0, 28750.0, 28750.0]
 [1, :balance_eth_crowd, 0.0, 25.0, 25.0]
 [1, :locked_balance, 50000.0, 78750.0, 28750.0]
-[2, :get_balance, 999979.819430028, 999929.817315102, -50.002114926]
+[2, :get_balance, 999869.72508525, 999819.722970324, -50.002114926]
 [2, :balance_of, 15000.0, 72500.0, 57500.0]
 [2, :balances_crowd, 0.0, 57500.0, 57500.0]
 [2, :balance_eth_crowd, 0.0, 50.0, 50.0]
-[3, :get_balance, 1000000.0, 999924.997550102, -75.00244989800001]
+[3, :get_balance, 999849.995100204, 999774.9926503061, -75.00244989800001]
 [3, :balance_of, 0.0, 82500.0, 82500.0]
 [3, :balances_crowd, 0.0, 82500.0, 82500.0]
 [3, :balance_eth_crowd, 0.0, 75.0, 75.0]
-[4, :get_balance, 999999.824, 999849.821550102, -150.00244989799998]
+[4, :get_balance, 999699.7311002039, 999549.728650306, -150.00244989799998]
 [4, :balance_of, 0.0, 165000.0, 165000.0]
 [4, :balances_crowd, 0.0, 165000.0, 165000.0]
 [4, :balance_eth_crowd, 0.0, 150.0, 150.0]
-[5, :get_balance, 1000000.0, 999999.912, -0.088]
+[5, :get_balance, 999599.8187391841, 999599.730739184, -0.088]
 
 ========================================
 == Presale contribution taking us above the funding threshold
 == 
 
 ACTIONS
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005adc9b0>, 0x27882e8983b5842A79df3f03C213d77D08578746, 200)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ad5ea8>, 0x27882e8983b5842A79df3f03C213d77D08578746, 3000)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b27b8>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 200)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b1fe8>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 3000)
 
 VERIFY
 ok  diff [balance_of acc5] is 215000000000 as expected
@@ -197,11 +197,11 @@ DIFFERENCES
 [:c, :tokens_issued_total, 625250.0, 840250.0, 215000.0]
 [:c, :tokens_issued_crowd, 460250.0, 675250.0, 215000.0]
 [:c, :presale_contributor_count, 4, 5, 1]
-[5, :get_balance, 999999.912, 999799.909369592, -200.00263040800002]
+[5, :get_balance, 999599.730739184, 999399.728108776, -200.00263040800002]
 [5, :balance_of, 0.0, 215000.0, 215000.0]
 [5, :balances_crowd, 0.0, 215000.0, 215000.0]
 [5, :balance_eth_crowd, 0.0, 200.0, 200.0]
-[6, :get_balance, 1000000.0, 999999.912, -0.088]
+[6, :get_balance, 999799.6420680081, 999799.554068008, -0.088]
 
 ===============================================================================
 ============ After presale
@@ -224,14 +224,14 @@ DIFFERENCES
 == 
 
 ACTIONS
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ad5ea8>, 0x27882e8983b5842A79df3f03C213d77D08578746, 100)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b1fe8>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 100)
 
 VERIFY
 ok  val [balance_of acc6] 6 is 0 as expected
 ok  diff [balance_of acc6] is 0 as expected
 
 DIFFERENCES
-[6, :get_balance, 999999.912, 999999.824, -0.088]
+[6, :get_balance, 999799.554068008, 999799.4660680081, -0.088]
 
 ===============================================================================
 ============ ICO
@@ -254,10 +254,10 @@ DIFFERENCES
 == 
 
 ACTIONS
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ad5ea8>, 0x27882e8983b5842A79df3f03C213d77D08578746, 100)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ad4ad0>, 0x27882e8983b5842A79df3f03C213d77D08578746, 200)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005aced38>, 0x27882e8983b5842A79df3f03C213d77D08578746, 300)
-CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x0000000005ac7d58>, 0x27882e8983b5842A79df3f03C213d77D08578746, 3334)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b1fe8>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 100)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b1318>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 200)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b0d78>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 300)
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x00000000056b0788>, 0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B, 3334)
 
 VERIFY
 ok  diff [balance_of acc6] is 105000000000 as expected
@@ -275,19 +275,19 @@ DIFFERENCES
 [:c, :tokens_issued_total, 840250.0, 1455250.0, 615000.0]
 [:c, :tokens_issued_crowd, 675250.0, 1290250.0, 615000.0]
 [:c, :ico_contributor_count, 0, 3, 3]
-[6, :get_balance, 999999.824, 999899.821034004, -100.002965996]
+[6, :get_balance, 999799.4660680081, 999699.4631020119, -100.002965996]
 [6, :balance_of, 0.0, 105000.0, 105000.0]
 [6, :balances_crowd, 0.0, 105000.0, 105000.0]
 [6, :balance_eth_crowd, 0.0, 100.0, 100.0]
-[7, :get_balance, 1000000.0, 999799.997364004, -200.00263599599998]
+[7, :get_balance, 999599.9947280079, 999399.992092012, -200.00263599599998]
 [7, :balance_of, 0.0, 210000.0, 210000.0]
 [7, :balances_crowd, 0.0, 210000.0, 210000.0]
 [7, :balance_eth_crowd, 0.0, 200.0, 200.0]
-[8, :get_balance, 1000000.0, 999699.9973642239, -300.002635776]
+[8, :get_balance, 999399.994728448, 999099.992092672, -300.002635776]
 [8, :balance_of, 0.0, 300000.0, 300000.0]
 [8, :balances_crowd, 0.0, 300000.0, 300000.0]
 [8, :balance_eth_crowd, 0.0, 300.0, 300.0]
-[9, :get_balance, 1000000.0, 999999.912, -0.088]
+[9, :get_balance, 999999.824, 999999.736, -0.088]
 
 ===============================================================================
 ============ After ICO
@@ -329,7 +329,7 @@ ok  val [balance_of acc19] 19 is 0 as expected
 ok  diff [balance_of acc19] is 0 as expected
 
 DIFFERENCES
-[1, :get_balance, 999974.4606588681, 999974.372658868, -0.088]
+[1, :get_balance, 999921.47193544, 999921.38393544, -0.088]
 
 ========================================
 == Make tradeable
@@ -359,7 +359,7 @@ ok  val [balance_of acc20] 20 is 0 as expected
 ok  diff [balance_of acc20] is 0 as expected
 
 DIFFERENCES
-[1, :get_balance, 999974.372658868, 999974.283423216, -0.089235652]
+[1, :get_balance, 999921.38393544, 999921.2946997881, -0.089235652]
 [1, :balance_of, 190250.0, 78750.0, -111500.0]
 [19, :balance_of, 0.0, 111500.0, 111500.0]
 
@@ -374,7 +374,7 @@ ok  diff [balance_of acc1] is 0 as expected
 ok  diff [get_balance acc1] is ≈0 as expected (within 0.1 ether)
 
 DIFFERENCES
-[1, :get_balance, 999974.283423216, 999974.195423216, -0.088]
+[1, :get_balance, 999921.2946997881, 999921.206699788, -0.088]
 
 ========================================
 == Owner tries to retrieve forfeited tokens (too early)
@@ -452,10 +452,10 @@ ok  val [balance_of acc20] 20 is 50000000000 as expected
 ok  diff [balance_of acc20] is 50000000000 as expected
 
 DIFFERENCES
-[1, :get_balance, 999974.195423216, 999974.194527156, -0.00089606]
+[1, :get_balance, 999921.206699788, 999921.2058037281, -0.00089606]
 [1, :balance_of, 50000.0, 0.0, -50000.0]
 [20, :balance_of, 0.0, 50000.0, 50000.0]
 
 Errors found: 0
 
-2018-01-21 18:34:36 UTC
+2018-01-25 18:04:51 UTC

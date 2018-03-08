@@ -4,7 +4,7 @@ require_relative "../lib/Sot.rb"
 
 ##
 
-@contract_address = "0x0837639bebA93cEC81CCffa2dE17755894E5B332"
+@contract_address = "0x16009B74B07b08f8b69a026E6AebC73Cb1656C9B"
 
 ##
 

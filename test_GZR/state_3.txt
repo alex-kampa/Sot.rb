@@ -20,7 +20,7 @@
    "ico_contributor_count"=>3},
  :acts=>
   {1=>
-    {"get_balance"=>"999,974.19452715595252812",
+    {"get_balance"=>"999,921.20580372808035463",
      "whitelist"=>false,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -30,7 +30,7 @@
      "balance_eth_private"=>"10",
      "locked_balance"=>"0"},
    2=>
-    {"get_balance"=>"999,929.8173151019727811",
+    {"get_balance"=>"999,819.7229703239863738",
      "whitelist"=>true,
      "balance_of"=>"72,500",
      "balances_crowd"=>"57,500",
@@ -40,7 +40,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    3=>
-    {"get_balance"=>"999,924.9975501019507647",
+    {"get_balance"=>"999,774.9926503060851246",
      "whitelist"=>true,
      "balance_of"=>"82,500",
      "balances_crowd"=>"82,500",
@@ -50,7 +50,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    4=>
-    {"get_balance"=>"999,849.8215501019731164",
+    {"get_balance"=>"999,549.7286503060022369",
      "whitelist"=>true,
      "balance_of"=>"165,000",
      "balances_crowd"=>"165,000",
@@ -60,7 +60,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    5=>
-    {"get_balance"=>"999,799.9093695919727907",
+    {"get_balance"=>"999,399.7281087760347873",
      "whitelist"=>true,
      "balance_of"=>"215,000",
      "balances_crowd"=>"215,000",
@@ -70,7 +70,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    6=>
-    {"get_balance"=>"999,899.8210340039804578",
+    {"get_balance"=>"999,699.46310201194137335",
      "whitelist"=>true,
      "balance_of"=>"105,000",
      "balances_crowd"=>"105,000",
@@ -80,7 +80,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    7=>
-    {"get_balance"=>"999,799.9973640040261671",
+    {"get_balance"=>"999,399.992092011962086",
      "whitelist"=>true,
      "balance_of"=>"210,000",
      "balances_crowd"=>"210,000",
@@ -90,7 +90,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    8=>
-    {"get_balance"=>"999,699.99736422393471",
+    {"get_balance"=>"999,099.9920926720369607",
      "whitelist"=>true,
      "balance_of"=>"300,000",
      "balances_crowd"=>"300,000",
@@ -100,7 +100,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    9=>
-    {"get_balance"=>"999,999.9120000000111759",
+    {"get_balance"=>"999,999.7360000000335276",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -130,7 +130,7 @@
      "balance_eth_private"=>"100",
      "locked_balance"=>"0"},
    12=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"931,299.9611571519635618",
      "whitelist"=>false,
      "balance_of"=>"0",
      "balances_crowd"=>"0",

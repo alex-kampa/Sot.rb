@@ -20,7 +20,7 @@
    "ico_contributor_count"=>0},
  :acts=>
   {1=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,948.8376205179374665",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -30,7 +30,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    2=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,879.8152001759735867",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -40,7 +40,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    3=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,849.9951002040179446",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -50,7 +50,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    4=>
-    {"get_balance"=>"999,999.8240000000223517",
+    {"get_balance"=>"999,699.7311002039350569",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -60,7 +60,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    5=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,599.8187391840619966",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -70,7 +70,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    6=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,799.6420680080773309",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -80,7 +80,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    7=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,599.9947280079359189",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -90,7 +90,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    8=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,399.9947284479858354",
      "whitelist"=>true,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -100,7 +100,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    9=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"999,999.8240000000223517",
      "whitelist"=>false,
      "balance_of"=>"0",
      "balances_crowd"=>"0",
@@ -130,7 +130,7 @@
      "balance_eth_private"=>"0",
      "locked_balance"=>"0"},
    12=>
-    {"get_balance"=>"1,000,000",
+    {"get_balance"=>"931,299.9611571519635618",
      "whitelist"=>false,
      "balance_of"=>"0",
      "balances_crowd"=>"0",

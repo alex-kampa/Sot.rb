@@ -1,0 +1,49 @@
+2018-01-25 16:40:07 UTC
+
+========================================
+== Contract Gizer Gaming Token initialized
+== 
+At address 0x81E8f1536c0Fe2aAeA2c6C1F1911924C09371f93
+
+===============================================================================
+============ Simple demo
+===============================================================================
+
+========================================
+== presale
+== 
+
+ACTIONS
+
+VERIFY
+ok  val [at_now acc]  is 1511272801 as expected
+
+DIFFERENCES
+[:c, :at_now, 1, 1511272801, 1511272800]
+
+========================================
+== Whitelist account and receive contribution
+== 
+
+ACTIONS
+CONTRIBUTE : @client.transfer(acct_#<Eth::Key:0x000000000561fb48>, 0x81E8f1536c0Fe2aAeA2c6C1F1911924C09371f93, 1)
+
+VERIFY
+ok  val [whitelist acc1] 1 is true as expected
+***ERR*** val [balance_of acc1] is 1150000000 expected 1000000000
+
+DIFFERENCES
+[:c, :eth, 0.0, 1.0, 1.0]
+[:c, :ether_received_crowd, 0.0, 1.0, 1.0]
+[:c, :tokens_issued_total, 0.0, 1150.0, 1150.0]
+[:c, :tokens_issued_crowd, 0.0, 1150.0, 1150.0]
+[:c, :presale_contributor_count, 0, 1, 1]
+[1, :get_balance, 999947.566475292, 999946.562710366, -1.003764926]
+[1, :whitelist, false, true]
+[1, :balance_of, 0.0, 1150.0, 1150.0]
+[1, :balances_crowd, 0.0, 1150.0, 1150.0]
+[1, :balance_eth_crowd, 0.0, 1.0, 1.0]
+
+Errors found: 1
+
+2018-01-25 16:40:19 UTC
