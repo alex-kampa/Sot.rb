@@ -183,11 +183,9 @@ class Sot
   end
   
   def exp(*args)
-    # no account info needed
-    args.insert(1, nil) unless @maps.include?(args[0].to_s)
+    # args.insert(1, nil) unless @maps.include?(args[0].to_s)
+	args.insert(1, nil) unless (args[1].is_a?(String) && args[1] =~ /^0x/)
     @batch[:expect] << args
-    
-      
   end
 
   # ---------------------------------------------------------------------------
@@ -284,6 +282,8 @@ class Sot
 
   def do_begin()
   
+puts @batch[:expect].inspect
+
     vini = []
 
     # header
@@ -291,7 +291,7 @@ class Sot
     
     # load initial values
     @batch[:expect].each { |a| vini << call(a[0..1]) }
-
+	
     # do actions
     @sl.p "\nACTIONS"
     @batch[:actions].each { |a| a[0] == :contribute ? contribute(a) : transact(a) }
@@ -448,9 +448,9 @@ class Sot
       call =  "@#{target}.#{function}"
     end
     
-    # puts '---'
-    # puts call
-    # puts '---'
+     # puts '---'
+     # puts call
+     # puts '---'
 
     x = eval call
     
