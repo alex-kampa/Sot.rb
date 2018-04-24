@@ -84,7 +84,7 @@ class Sot
     
     @test_nr = h[:test_nr]
     @errors = 0
-   
+	
   end
 
   def dump
@@ -107,6 +107,13 @@ class Sot
   
   def contract(key=@owner_key)
     return @contract if key == @last_key
+    @contract = Ethereum::Contract.create(client: @client, name: @name, address: @address, abi: @abi)
+    @contract.key = key
+    @last_key = key
+    return @contract
+  end
+
+  def contract_refresh(key=@owner_key)
     @contract = Ethereum::Contract.create(client: @client, name: @name, address: @address, abi: @abi)
     @contract.key = key
     @last_key = key
@@ -184,7 +191,7 @@ class Sot
   
   def exp(*args)
     # args.insert(1, nil) unless @maps.include?(args[0].to_s)
-	args.insert(1, nil) unless (args[1].is_a?(String) && args[1] =~ /^0x/)
+	args.insert(1, nil) unless ( (args[1].is_a?(String) && args[1] =~ /^0x/) || args[1].kind_of?(Array) )
     @batch[:expect] << args
   end
 
@@ -276,13 +283,12 @@ class Sot
   #
 
   def do()
+    contract_refresh()
     do_begin()
     do_end()
   end
 
   def do_begin()
-  
-puts @batch[:expect].inspect
 
     vini = []
 
@@ -427,6 +433,8 @@ puts @batch[:expect].inspect
     
     if a[1].is_a?(String) then
       value = '"' + a[1] + '"'
+	elsif a[1].kind_of?(Array) then
+	  value = a[1][0]
     else
       value = a[1]
     end
