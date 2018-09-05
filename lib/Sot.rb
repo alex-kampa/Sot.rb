@@ -1,6 +1,6 @@
 require "Ethereum.rb"
 require "eth"
-require 'duplicate'
+require "duplicate"
 
 require_relative "utils"
 
@@ -15,10 +15,11 @@ class Sot
   def initialize(h)
 
     # basic contract info
-    @client    = h[:client]
-    @name      = h[:name]
-    @address   = h[:address]
-    @abi       = h[:abi]
+    @client   = h[:client]
+    @name     = h[:name]
+    @address  = h[:address]
+    @abi      = h[:abi]
+    @decimals = h[:decimals]
     
     # default key for transactions
     @owner_key = h[:own_key]
@@ -30,12 +31,13 @@ class Sot
     contract(@owner_key)
 
     # smart contract variables and mappings
-    @vars      = h[:vars]
-    @maps      = h[:maps]
-    @types     = h[:types]
+    @vars  = h[:vars]
+    @maps  = h[:maps]
+    @gmaps = h[:gmaps]
+    @types = h[:types]
 
     # log
-    @sl        = h[:sl]     
+    @sl = h[:sl]     
     
     # maximum  number of accounts used
     @imax = h.has_key?(:imax) ? h[:imax] : 20
@@ -61,6 +63,13 @@ class Sot
 
     @sl.h2 "Contract #{@contract.call.name} initialized" 
     @sl.p  "At address " + @address
+    
+    # replace :accounts in gmaps
+    @gmaps.keys.each do |k|
+      @gmaps[k].each_index do |i|
+        @gmaps[k][i] = @a[1..@imax] if @gmaps[k][i] == :accounts
+      end
+    end
 
     @scale = {
 #      'balance_of' => 10**6,
@@ -68,7 +77,7 @@ class Sot
     }
     
     @E18 = 10 ** 18
-    @EXX = 10 ** 6
+    @EXX = 10 ** @decimals
     
     # data structures to hold processing info and current batch information
     
@@ -140,7 +149,6 @@ class Sot
     type = nil
     
     if    @types.has_key?(function) then type = @types[function]
-    elsif @types.has_key?(function) then type = @types[function]
     elsif (function =~ /date/)   then type = :date
     elsif (function =~ /ether/)  then type = :ether
     elsif (function =~ /wallet/) then type = :address     
@@ -191,7 +199,7 @@ class Sot
   
   def exp(*args)
     # args.insert(1, nil) unless @maps.include?(args[0].to_s)
-	args.insert(1, nil) unless ( (args[1].is_a?(String) && args[1] =~ /^0x/) || args[1].kind_of?(Array) )
+	  args.insert(1, nil) unless ( (args[1].is_a?(String) && args[1] =~ /^0x/) || args[1].kind_of?(Array) )
     @batch[:expect] << args
   end
 
@@ -205,22 +213,41 @@ class Sot
     h = {
       :eth => 0,
       :vars => {},
-      :acts => {} 
+      :acts => {},
+      :gmaps => {}      
     }
   
+    # ether balance
+
     h[:eth] = call [ :get_balance, @address, fmt ]
+    
+    # contract variables
     
     @vars.each do |var|
       h[:vars][var] = call [ var, nil, fmt ]
     end
     
+    # basic account maps
+    
     (1..imax).each do |i|
       h[:acts][i] = {}
+      h[:acts][i][:eth] = call [ :get_balance, @a[i], fmt ] # account ether balance
       @maps.each do |map|
         h[:acts][i][map] = call [ map, @a[i], fmt ]
       end
     end
     
+    # other maps
+    
+    @gmaps.keys.each do |gmap|
+      @gmaps[gmap].explode.each do |ary|
+        ref = "#{gmap}:" + ary.join(':')
+        h[:gmaps][ref] = call [ gmap, ary, fmt ]
+      end
+    end
+    
+    #
+
     return h
   
   end
@@ -229,10 +256,14 @@ class Sot
   
     diff = []
     
+    # ether balance
+    
     v1, v2 = h1[:eth], h2[:eth]
     if v1 != v2 then
       diff << [ :c, :eth, v1, v2, v2 - v1 ]
     end
+    
+    # contract variables
     
     @vars.each do |var|
       v1, v2 = h1[:vars][var], h2[:vars][var]
@@ -243,7 +274,9 @@ class Sot
         end
         diff << ary
       end
-    end    
+    end
+    
+    # account maps
   
     (1..imax).each do |i|
       @maps.each do |map|
@@ -255,6 +288,22 @@ class Sot
           end
           diff << ary
         end
+      end
+    end
+    
+    # other maps
+    
+    @gmaps.keys.each do |gmap|
+      @gmaps[gmap].explode.each do |ary|
+        ref = "#{gmap}:" + ary.join(':')
+        v1, v2 = h1[:gmaps][ref], h2[:gmaps][ref]
+        if v1 != v2 then
+          ary = [ ref, gmap.to_sym, v1, v2 ]
+          if (v1.is_a?(Numeric) && v2.is_a?(Numeric)) then
+            ary << v2 - v1
+          end
+          diff << ary
+        end          
       end
     end
     
@@ -407,10 +456,18 @@ class Sot
   #
 
   def transact(a)
-    function = a[0].to_s
-    contract(a[1])
-    parameters = a[2..-1]
-    @contract.transact_and_wait.__send__ function, *parameters
+    begin
+      function = a[0].to_s
+      contract(a[1])
+      parameters = a[2..-1]
+      @contract.transact_and_wait.__send__ function, *parameters
+    rescue
+      puts "===ERROR===transact"
+      puts function
+      puts parameters.inspect
+      puts "===ERROR==="
+      exit 0
+    end
   end
   
   # ---------------------------------------------------------------------------
@@ -433,8 +490,8 @@ class Sot
     
     if a[1].is_a?(String) then
       value = '"' + a[1] + '"'
-	elsif a[1].kind_of?(Array) then
-	  value = a[1][0]
+    elsif a[1].kind_of?(Array) then
+	    value = a[1][0]
     else
       value = a[1]
     end
@@ -450,31 +507,117 @@ class Sot
       function = a[0]
     end
     
-    if a[1] then
-      call =  "@#{target}.#{function}(#{value})"
-    else
-      call =  "@#{target}.#{function}"
+    x = nil
+    call_type = 0
+    
+    begin
+    
+      if a[1] then
+        if (target == 'client') then
+          call_type = 1
+          x = @client.__send__ function, *a[1]
+        else
+          call_type = 2
+          x = @contract.call.__send__ function, *a[1]
+        end
+      else
+        if (target == 'client') then
+          call_type = 3
+          x = @client.__send__ function
+        else
+          call_type = 4
+          x = @contract.call.__send__ function
+        end
+      end
+    
+      #  puts '---'
+      #  puts call
+      #  puts '---'
+
+      # x = eval call
+      
+      # return without formatting (default)
+      return x unless a[2]
+      
+      # return with formatting
+      type = type_of(function)
+    
+      x = Time.at(x.to_i).utc          if type == :date
+      x = comma_numbers(x.to_f / @E18) if type == :ether
+      x = comma_numbers(x.to_f / @EXX) if type == :token
+      x += '0x'                        if type == :address
+      
+      return x
+
+    rescue StandardError => e
+    
+      puts "===ERROR===call"
+      puts e.inspect
+      puts "call_type: #{call_type}"
+      puts "function: #{function}"
+      puts "a[1]: #{a[1].inspect}"
+      puts "===ERROR==="
     end
     
-     # puts '---'
-     # puts call
-     # puts '---'
+  end
 
-    x = eval call
+end
+
+
+###############################################################################
+
+
+class Array
+
+  def explode()
+
+    # "explodes" and array of arrays into an array of arrays fo all the possible combinations
+    #
+    # Example
+    #
+    # input:
+    #
+    # [ [1,2], [:a, :b, :c], ['x', 'y'] ]
+    #
+    # output:
+    #
+    # [
+    #   [1, :a, "x"], [1, :a, "y"], [1, :b, "x"], [1, :b, "y"], [1, :c, "x"], [1, :c, "y"], 
+    #   [2, :a, "x"], [2, :a, "y"], [2, :b, "x"], [2, :b, "y"], [2, :c, "x"], [2, :c, "y"]
+    # ]
     
-    # return without formatting (default)
-    return x unless a[2]
+    # first we make sure every element respond to :each
+    #
+    self.make_array_elements_respond_to_each
     
-    # return with formatting
-    type = type_of(function)
+    r = [ [] ]
+    self.each_index do |i|
+      s = []
+      r.each do |ra|
+        self[i].each do |e|
+          s << ra + [e]
+        end
+      end
+      r = s.clone
+    end
+
+    return r
+    
+  end
   
-    x = Time.at(x.to_i).utc          if type == :date
-    x = comma_numbers(x.to_f / @E18) if type == :ether
-    x = comma_numbers(x.to_f / @EXX) if type == :token
-    x += '0x'                        if type == :address
-    
-    return x
-    
+  #
+
+  def make_array_elements_respond_to_each()
+  
+    # returns an array of elements that all respond to :each
+    #
+    # does this by converting any element of an array that does not 
+    # respond to :each to an array containing that element.
+  
+    self.each_index do |i|
+      self[i] = [ self[i] ] unless self[i].respond_to?(:each)
+    end
+
   end
   
 end
