@@ -442,14 +442,24 @@ class Sot
   #
   # Contribute (send ether to the contract)
   #
-
+  
   def contribute(a)
     key = a[1]
     amt = (a[2] * 10**18).to_i
-    @sl.p "CONTRIBUTE : @client.transfer(acct_#{a[1]}, #{@address}, #{a[2]})"
+    balance1 = @client.get_balance(key.address)
     @client.transfer(key, @address, amt)
+    cost = balance1 - @client.get_balance(key.address) - amt
+    @sl.p "Contribute : #{get_address_from_key(key)} : #{a[2]} ether -- #{comma_numbers(cost/@client.gas_price)} gas"
   end
-
+  
+  def get_address_from_key(key)
+    address = key.address
+    i = @a.find_index(address).to_i
+    return "acct(#{i})" if (i > 0)
+    return address
+  end
+  
+  
   # ---------------------------------------------------------------------------
   #
   # Transact (interact with the contract)
@@ -458,9 +468,13 @@ class Sot
   def transact(a)
     begin
       function = a[0].to_s
-      contract(a[1])
+      key = a[1]
+      contract(key)
       parameters = a[2..-1]
+      balance1 = @client.get_balance(key.address)
       @contract.transact_and_wait.__send__ function, *parameters
+      cost = balance1 - @client.get_balance(key.address)
+      @sl.p "Transact : #{get_address_from_key(key)} : #{function} : #{check_addresses_in_params(parameters.clone)} -- #{comma_numbers(cost/@client.gas_price)} gas"
     rescue
       puts "===ERROR===transact"
       puts function
@@ -468,6 +482,16 @@ class Sot
       puts "===ERROR==="
       exit 0
     end
+  end
+  
+  def check_addresses_in_params(parameters)
+    parameters.each_index do |i|
+      if parameters[i].is_a?(String) && parameters[i] =~ /^0x[0-9A-Fa-f]*$/
+        j = @a.find_index(parameters[i]).to_i
+        parameters[i] = "acct(#{j})" if j > 0
+      end
+    end
+    return parameters
   end
   
   # ---------------------------------------------------------------------------
@@ -529,12 +553,6 @@ class Sot
           x = @contract.call.__send__ function
         end
       end
-    
-      #  puts '---'
-      #  puts call
-      #  puts '---'
-
-      # x = eval call
       
       # return without formatting (default)
       return x unless a[2]
